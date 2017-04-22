@@ -5,7 +5,7 @@
 		this.phone = phone,
 		this.email = email,
 		this.dinerNum = dinerNum,
-		this.uniqueId = function () {
+		this.add = function () {
 
 			var sqlStatement = "INSERT INTO reservations (cust_name, cust_phone, cust_email, diner_number) VALUES ('" + custName + "', '" + phone + "', " + email + ", " + dinerNum + ")";
 
@@ -30,7 +30,14 @@
 		};
 
 		
-		Reservation(newReservation.customerName, newReservation.phoneNumber, newReservation.customerEmai, newReservation.dinerNumber);
+		var custReservation = new Reservation(
+			newReservation.customerName, 
+			newReservation.phoneNumber, 
+			newReservation.customerEmai, 
+			newReservation.dinerNumber
+		);
+
+		custReservation.add();
 
 		// This line is the magic. It's very similar to the standard ajax function we used.
 		// Essentially we give it a URL, we give it the object we want to send, then we have a "callback".
