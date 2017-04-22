@@ -35,7 +35,7 @@
 
 
 					// Then display the remaining fields in the HTML (Section Name, Date, URL)
-					$("#tableWell-"+ i+1).append('<h2><span class="label label-primary">' + tableNumber + "</span> | " + tableData[i].customerID + "</h2>");
+					$("#tableWell-"+ i+1).append('<h2><span class="label label-primary">' + tableNumber + "</span> | " + tableData[i].cust_name + "</h2>");
 				}
 			});
 	}
@@ -71,7 +71,7 @@
 					var tableNumber = i + 1;
 
 					// Then display the remaining fields in the HTML (Section Name, Date, URL)
-					$("#waitlistWell-"+ i+1).append('<h2><span class="label label-primary">' + tableNumber + "</span> | " + waitlistData[i].customerID + "</h2>");
+					$("#waitlistWell-"+ i+1).append('<h2><span class="label label-primary">' + tableNumber + "</span> | " + waitlistData[i].cust_name + "</h2>");
 				}
 			});
 	}

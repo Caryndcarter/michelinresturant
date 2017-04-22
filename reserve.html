@@ -8,6 +8,8 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	<script src="https://code.jquery.com/jquery.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<script src="assets/reserve.js"></script>
+
 
 </head>
 <body>
@@ -15,9 +17,9 @@
 	<div class="container">
 
 		<div class="jumbotron">
-			<h1 class="text-center"><span class="glyphicon glyphicon-gift"></span> Michelin Restaurant</h1>
+			<h1 class="text-center"><span class="glyphicon glyphicon-fire"></span> Hot Restaurant</h1>
 			<hr>
-			<h2 class="text-center"><span class="glyphicon glyphicon-eye-open"></span> Make your reservation <span class="glyphicon glyphicon-eye-open"></span></h2>
+			<h2 class="text-center">Make your reservation</h2>
 			<br>
 
 			<div class="text-center">
@@ -40,25 +42,25 @@
 
 							<div class="form-group">
 								<label for="">Name</label>
-								<input type="text" class="form-control" id="res_name">
+								<input type="text" class="form-control" id="reserve_name">
 							</div>
 
 							<div class="form-group">
 								<label for="">Phone Number</label>
-								<input type="text" class="form-control" id="res_phone">
+								<input type="text" class="form-control" id="reserve_phone">
 							</div>
 
 							<div class="form-group">
 								<label for="">Email</label>
-								<input type="text" class="form-control" id="res_email">
+								<input type="text" class="form-control" id="reserve_email">
 							</div>
 
 							<div class="form-group">
-								<label for="">Number of Fellow Diners</label>
-								<input type="text" class="form-control" id="res_diners">
+								<label for="">Unique ID</label>
+								<input type="text" class="form-control" id="reserve_uniqueID">
 							</div>
 
-							<button type="submit" class="btn btn-primary submit"><span class="glyphicon glyphicon-thumbs-up"></span> Submit <span class="glyphicon glyphicon-thumbs-up"></span></button>
+							<button type="submit" class="btn btn-primary submit">Submit</button>
 						</form>
 
 					</div>
@@ -75,18 +77,6 @@
 	    </footer>
 
 	</div>
-<script type="text/javascript" src="/assets/reserve.js"></script>
 
 </body>
 </html>
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-97881013-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
