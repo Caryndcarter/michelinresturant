@@ -9,7 +9,7 @@
 
 			var sqlStatement = "INSERT INTO reservations (cust_name, cust_phone, cust_email, diner_number) VALUES ('" + custName + "', '" + phone + "', " + email + ", " + dinerNum + ")";
 
-			connection.query(sqlStatement6, function (err,response) {
+			connection.query(sqlStatement, function (err,response) {
 
 				if(err) {
 					console.log(err);
