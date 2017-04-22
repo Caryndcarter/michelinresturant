@@ -1,18 +1,27 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var path = require("path");
+var mysql = require("mysql");
 
 var app = express();
 var port = process.env.PORT || 8000;
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
+app.use(
+  bodyParser.urlencoded({
+    extended: true
+  })
+);
 app.use(bodyParser.text());
-app.use(bodyParser.json({
-  type: "application/vnd.api+json"
-}));
+app.use(
+  bodyParser.json({
+    type: "application/vnd.api+json"
+  })
+);
+
+/*
+Routes
+*/
 
 app.get("/", function(req, res) {
   // send index.html
@@ -45,22 +54,21 @@ app.get("/api/waitlist", function(req, res) {
 });
 
 app.post("/api/tables", function(req, res) {
- //creates reservation
-console.log(req.body)  
+  //creates reservation
+  console.log(req.body);
 
-//Are tables available?
+  //Are tables available?
 
-
-res.send(true); //If tables available
-
-
+  res.send(true); //If tables available
+  //res.send(false); //if not send, put on waitlist
 });
 
 app.post("/api/clear", function(req, res) {
- //clears table
-  
+  //clears table
 });
 
+
+//Listener
 app.listen(port, function() {
   console.log("App listening on port " + port);
 });
