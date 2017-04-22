@@ -12,7 +12,7 @@ var connection = mysql.createConnection ({
   host: "localhost",
   port: 3306,
   user: "root",
-  password: "",
+  password: "mypass",
   database: "michelin_restaurantDB",
 });
 
@@ -82,7 +82,13 @@ app.get("/api/tables", function(req, res) {
 
 app.get("/api/waitlist", function(req, res) {
   // send tables json
-  res.send("Waitlist JSON here");
+  //res.send("Waitlist JSON here");
+  connection.query("SELECT * FROM reservations WHERE waiting_list = 1", function(err, response) {
+      // for (var i = 0; i < response.length; i++) {
+      //   res.json(response[i]);
+      // }
+      res.json(response);
+  });
 });
 
 app.get("/api/count", function(req, res) {
@@ -96,6 +102,7 @@ app.get("/api/count", function(req, res) {
 app.post("/api/tables", function(req, res) {
   //creates reservation
   console.log(req.body);
+  con
 
   //Are tables available?
 
@@ -111,52 +118,4 @@ app.post("/api/clear", function(req, res) {
 app.listen(port, function() {
   console.log("App listening on port " + port);
 });
-
-
-
-/*========================================
-  RESERVATION CREATION
-==========================================*/
-  function Reservation (custName, phone, email, dinerNum) {
-    this.custName = custName,
-    this.phone = phone,
-    this.email = email,
-    this.dinerNum = dinerNum,
-    this.add = function () {
-
-      var sqlStatement = "INSERT INTO reservations (cust_name, cust_phone, cust_email, diner_number) VALUES ('" + custName + "', '" + phone + "', " + email + ", " + dinerNum + ")";
-
-      connection.query(sqlStatement, function (err,response) {
-
-        if(err) {
-          console.log(err);
-        } 
-    
-      }); 
-    }
-    
-  }
-
-  $(".submit").on("click", function(){
-
-    var newReservation = {
-      customerName: $('#res_name').val().trim(),
-      phoneNumber: $('#res_phone').val().trim(),
-      customerEmail: $('#res_email').val().trim(),
-      dinerNumber: $('#res_diners').val().trim(),
-    };
-
-    
-    var custReservation = new Reservation(
-      newReservation.customerName, 
-      newReservation.phoneNumber, 
-      newReservation.customerEmai, 
-      newReservation.dinerNumber
-    );
-
-    custReservation.add();
-
-}); 
-
-/*=============================================*/
 
