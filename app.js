@@ -47,6 +47,13 @@ app.get("/api/waitlist", function(req, res) {
 app.post("/api/tables", function(req, res) {
  //creates reservation
 console.log(req.body)  
+
+//Are tables available?
+
+
+res.send(true); //If tables available
+
+
 });
 
 app.post("/api/clear", function(req, res) {
