@@ -1,31 +1,27 @@
 
-	// In this code below we create the Front-end Javascript which "POSTS" our form data to our express server.
-	// In essence, when the user hits submit, jQuery grabs all of the fields then sends a post request to our api
-	// Our api recognizes the route (/api/tables)... and then runs the associated code (found in api-routes.js).
-	// In this case the associated code "saves" the data to the table-data.js file or waitinglist-data.js file
+	
 	function Reservation (custName, phone, email, dinerNum) {
 		this.custName = custName,
 		this.phone = phone,
 		this.email = email,
 		this.dinerNum = dinerNum,
-		this.uniqueId = function () {
+		this.add = function () {
 
-			var sqlStatement = "INSERT INTO reservations (cust_name, cust_email) VALUES ('" + name + "', '" + department + "', " + price + ", " + quantity + ")";
+			var sqlStatement = "INSERT INTO reservations (cust_name, cust_phone, cust_email, diner_number) VALUES ('" + custName + "', '" + phone + "', " + email + ", " + dinerNum + ")";
 
-		connection.query(sqlStatement6, function (err,response) {
+			connection.query(sqlStatement, function (err,response) {
 
-		if(err) {
-			console.log(err);
-		} 
+				if(err) {
+					console.log(err);
+				} 
 		
-		}); 
-	}
+			}); 
 		}
+		
 	}
 
 	$(".submit").on("click", function(){
 
-		// Here we grab the form elements
 		var newReservation = {
 			customerName: $('#res_name').val().trim(),
 			phoneNumber: $('#res_phone').val().trim(),
@@ -33,8 +29,15 @@
 			dinerNumber: $('#res_diners').val().trim(),
 		};
 
-		n
-		console.log(newReservation);
+		
+		var custReservation = new Reservation(
+			newReservation.customerName, 
+			newReservation.phoneNumber, 
+			newReservation.customerEmai, 
+			newReservation.dinerNumber
+		);
+
+		custReservation.add();
 
 		// This line is the magic. It's very similar to the standard ajax function we used.
 		// Essentially we give it a URL, we give it the object we want to send, then we have a "callback".
