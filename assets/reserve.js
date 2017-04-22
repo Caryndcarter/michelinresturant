@@ -1,44 +1,48 @@
+/*========================================
+  RESERVATION CREATION
+==========================================*/
+  function Reservation (custName, phone, email, dinerNum) {
+    this.custName = custName,
+    this.phone = phone,
+    this.email = email,
+    this.dinerNum = dinerNum,
+    this.add = function () {
 
-	
-	function Reservation (custName, phone, email, dinerNum) {
-		this.custName = custName,
-		this.phone = phone,
-		this.email = email,
-		this.dinerNum = dinerNum,
-		this.add = function () {
+      var sqlStatement = "INSERT INTO reservations (cust_name, cust_phone, cust_email, diner_number) VALUES ('" + custName + "', '" + phone + "', " + email + ", " + dinerNum + ")";
 
-			var sqlStatement = "INSERT INTO reservations (cust_name, cust_phone, cust_email, diner_number) VALUES ('" + custName + "', '" + phone + "', " + email + ", " + dinerNum + ")";
+      connection.query(sqlStatement, function (err,response) {
 
-			connection.query(sqlStatement, function (err,response) {
+        if(err) {
+          console.log(err);
+        } 
+    
+      }); 
+    }
+    
+  }
 
-				if(err) {
-					console.log(err);
-				} 
-		
-			}); 
-		}
-		
-	}
+ $(".submit").on("click", function(){
 
-	$(".submit").on("click", function(){
+    var newReservation = {
+      customerName: $('#res_name').val().trim(),
+      phoneNumber: $('#res_phone').val().trim(),
+      customerEmail: $('#res_email').val().trim(),
+      dinerNumber: $('#res_diners').val().trim(),
+    };
 
-		var newReservation = {
-			customerName: $('#res_name').val().trim(),
-			phoneNumber: $('#res_phone').val().trim(),
-			customerEmail: $('#res_email').val().trim(),
-			dinerNumber: $('#res_diners').val().trim(),
-		};
+    
+    var custReservation = new Reservation(
+      newReservation.customerName, 
+      newReservation.phoneNumber, 
+      newReservation.customerEmai, 
+      newReservation.dinerNumber
+    );
 
-		
-		var custReservation = new Reservation(
-			newReservation.customerName, 
-			newReservation.phoneNumber, 
-			newReservation.customerEmai, 
-			newReservation.dinerNumber
-		);
+    custReservation.add();
 
-		custReservation.add();
 
+
+/*=============================================*/
 		// This line is the magic. It's very similar to the standard ajax function we used.
 		// Essentially we give it a URL, we give it the object we want to send, then we have a "callback".
 		// The callback is the response of the server. In our case, we set up code in api-routes that "returns" true or false
