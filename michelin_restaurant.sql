@@ -1,3 +1,7 @@
+CREATE DATABASE michelin_restaurantDB;
+
+USE michelin_restaurantDB;
+
 CREATE TABLE `reservations` (
   `res_id` int(11) NOT NULL AUTO_INCREMENT,
   `cust_name` varchar(100) NOT NULL,
