@@ -1,22 +1,36 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var path = require("path");
+var mysql = require("mysql");
 
 var app = express();
-var port = 8000;
+var port = process.env.PORT || 8000;
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
+app.use(
+  bodyParser.urlencoded({
+    extended: true
+  })
+);
 app.use(bodyParser.text());
-app.use(bodyParser.json({
-  type: "application/vnd.api+json"
-}));
+app.use(
+  bodyParser.json({
+    type: "application/vnd.api+json"
+  })
+);
+
+/*
+Routes
+*/
 
 app.get("/", function(req, res) {
   // send index.html
   res.sendFile(path.join(__dirname, "index.html"));
+});
+
+app.get("/assets/reserve.js", function(req, res) {
+  // send reserve.js
+  res.sendFile(path.join(__dirname, "assets/reserve.js"));
 });
 
 app.get("/tables", function(req, res) {
@@ -34,17 +48,27 @@ app.get("/api/tables", function(req, res) {
   res.send("Table json here");
 });
 
-app.get("/api/tables#", function(req, res) {
-  // send tables json
-  res.send("You just cleared the table");
-});
-
 app.get("/api/waitlist", function(req, res) {
   // send tables json
   res.send("Waitlist JSON here");
 });
 
+app.post("/api/tables", function(req, res) {
+  //creates reservation
+  console.log(req.body);
 
+  //Are tables available?
+
+  res.send(true); //If tables available
+  //res.send(false); //if not send, put on waitlist
+});
+
+app.post("/api/clear", function(req, res) {
+  //clears table
+});
+
+
+//Listener
 app.listen(port, function() {
   console.log("App listening on port " + port);
 });
