@@ -4,6 +4,27 @@ var path = require("path");
 var mysql = require("mysql");
 var fs = require("fs");
 
+/*============================
+  MySQL DATABASE CONNECTION
+=============================*/
+
+var connection = mysql.createConnection ({
+  host: "localhost",
+  port: 3306,
+  user: "root",
+  password: "",
+  database: "michelin_restaurantDB",
+});
+
+
+connection.connect(function (err){
+
+  if (err) {
+    console.log(err);
+  } 
+});
+/*================================*/
+
 var app = express();
 var port = process.env.PORT || 8000;
 
