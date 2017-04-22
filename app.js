@@ -2,6 +2,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var path = require("path");
 var mysql = require("mysql");
+var fs = require("fs");
 
 var app = express();
 var port = process.env.PORT || 8000;
@@ -26,6 +27,16 @@ Routes
 app.get("/", function(req, res) {
   // send index.html
   res.sendFile(path.join(__dirname, "index.html"));
+  fs.readFile("count", "utf8", function(error, data) {
+    var count = parseFloat(data);
+
+    fs.writeFile("count", count + 1, function(err) {
+      if (err) {
+        return console.log(err);
+      }
+    });
+    console.log(data);
+  });
 });
 
 app.get("/assets/reserve.js", function(req, res) {
@@ -53,6 +64,14 @@ app.get("/api/waitlist", function(req, res) {
   res.send("Waitlist JSON here");
 });
 
+app.get("/api/count", function(req, res) {
+  // send visitor count
+  fs.readFile("count", "utf8", function(error, data) {
+    var count = parseFloat(data);
+    res.send(data);
+  });
+});
+
 app.post("/api/tables", function(req, res) {
   //creates reservation
   console.log(req.body);
@@ -66,7 +85,6 @@ app.post("/api/tables", function(req, res) {
 app.post("/api/clear", function(req, res) {
   //clears table
 });
-
 
 //Listener
 app.listen(port, function() {
