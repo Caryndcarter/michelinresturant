@@ -19,6 +19,11 @@ app.get("/", function(req, res) {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
+app.get("/assets/reserve.js", function(req, res) {
+  // send reserve.js
+  res.sendFile(path.join(__dirname, "assets/reserve.js"));
+});
+
 app.get("/tables", function(req, res) {
   // send tables.html
   res.sendFile(path.join(__dirname, "tables.html"));
@@ -41,14 +46,13 @@ app.get("/api/waitlist", function(req, res) {
 
 app.post("/api/tables", function(req, res) {
  //creates reservation
-  
+console.log(req.body)  
 });
 
 app.post("/api/clear", function(req, res) {
  //clears table
   
 });
-
 
 app.listen(port, function() {
   console.log("App listening on port " + port);
