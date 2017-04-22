@@ -29,6 +29,22 @@ app.get("/reserve", function(req, res) {
   res.sendFile(path.join(__dirname, "reserve.html"));
 });
 
+app.get("/api/tables", function(req, res) {
+  // send tables json
+  response.send("Table json here")
+});
+
+app.get("/api/tables#", function(req, res) {
+  // send tables json
+  response.send("You just cleared the table")
+});
+
+app.get("/api/waitlist", function(req, res) {
+  // send tables json
+  response.send("Waitlist JSON here")
+});
+
+
 app.listen(port, function() {
   console.log("App listening on port " + port);
 });
