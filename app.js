@@ -34,14 +34,19 @@ app.get("/api/tables", function(req, res) {
   res.send("Table json here");
 });
 
-app.get("/api/tables#", function(req, res) {
-  // send tables json
-  res.send("You just cleared the table");
-});
-
 app.get("/api/waitlist", function(req, res) {
   // send tables json
   res.send("Waitlist JSON here");
+});
+
+app.post("/api/tables", function(req, res) {
+ //creates reservation
+  
+});
+
+app.post("/api/clear", function(req, res) {
+ //clears table
+  
 });
 
 
