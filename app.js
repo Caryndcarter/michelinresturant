@@ -12,7 +12,7 @@ var connection = mysql.createConnection ({
   host: "localhost",
   port: 3306,
   user: "root",
-  password: "mypass",
+  password: "",
   database: "michelin_restaurantDB",
 });
 
@@ -65,6 +65,11 @@ app.get("/assets/reserve.js", function(req, res) {
   res.sendFile(path.join(__dirname, "assets/reserve.js"));
 });
 
+app.get("/assets/tables.js", function(req, res) {
+  // send reserve.js
+  res.sendFile(path.join(__dirname, "assets/tables.js"));
+});
+
 app.get("/tables", function(req, res) {
   // send tables.html
   res.sendFile(path.join(__dirname, "tables.html"));
@@ -77,7 +82,13 @@ app.get("/reserve", function(req, res) {
 
 app.get("/api/tables", function(req, res) {
   // send tables json
-  res.send("Table json here");
+  connection.query(`SELECT * from reservations WHERE reservation = 1;`, function(error, response) {
+    if (error) {
+      console.log(error);
+    } else {
+      res.json(response)
+      };
+    });
 });
 
 app.get("/api/waitlist", function(req, res) {
