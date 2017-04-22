@@ -1,6 +1,6 @@
-CREATE DATABASE restaurant;
+CREATE DATABASE michelin_restaurantDB;
 
-USE restaurant;
+USE michelin_restaurantDB;
 
 CREATE TABLE `reservations` (
   `res_id` int(11) NOT NULL AUTO_INCREMENT,
